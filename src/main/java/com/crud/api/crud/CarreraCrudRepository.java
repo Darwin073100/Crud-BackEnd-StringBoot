@@ -1,6 +1,6 @@
-package com.crud.api.persistence.crud;
+package com.crud.api.crud;
 
-import com.crud.api.persistence.entity.Carrera;
+import com.crud.api.entity.Carrera;
 import org.springframework.data.repository.CrudRepository;
 
 public interface CarreraCrudRepository extends CrudRepository<Carrera, Integer> {

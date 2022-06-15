@@ -1,4 +1,4 @@
-package com.crud.api.persistence.entity;
+package com.crud.api.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
