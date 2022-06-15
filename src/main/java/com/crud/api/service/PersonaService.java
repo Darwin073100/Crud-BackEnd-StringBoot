@@ -4,10 +4,12 @@ import com.crud.api.crud.PersonaCrudRepository;
 import com.crud.api.entity.Persona;
 import com.crud.api.repository.PersonaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class PersonaService implements PersonaRepository {
 
     @Autowired
@@ -26,7 +28,7 @@ public class PersonaService implements PersonaRepository {
      */
     @Override
     public Optional<Persona> getProduct(String idPersona) {
-        return Optional.empty();
+        return personaCrudRepository.findById(idPersona);
     }
 
     /**
@@ -35,7 +37,7 @@ public class PersonaService implements PersonaRepository {
      */
     @Override
     public Persona save(Persona persona) {
-        return null;
+        return personaCrudRepository.save(persona);
     }
 
     /**
@@ -45,7 +47,8 @@ public class PersonaService implements PersonaRepository {
      */
     @Override
     public Persona upDate(Persona persona, String idPersona) {
-        return null;
+        persona.setId(idPersona);
+        return personaCrudRepository.saveAndFlush(persona);
     }
 
     /**
@@ -53,6 +56,6 @@ public class PersonaService implements PersonaRepository {
      */
     @Override
     public void delete(String idPersona) {
-
+        personaCrudRepository.deleteById(idPersona);
     }
 }
