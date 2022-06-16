@@ -10,5 +10,5 @@ public interface PersonaRepository {
     Optional<Persona> getProduct(String idPersona);
     Persona save(Persona persona);
     Persona upDate(Persona persona, String idPersona);
-    void delete(String idPersona);
+    boolean delete(String idPersona);
 }

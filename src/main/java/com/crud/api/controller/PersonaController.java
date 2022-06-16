@@ -5,9 +5,7 @@ import com.crud.api.service.PersonaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,4 +20,31 @@ public class PersonaController {
     public ResponseEntity<List<Persona>> getAll() {
         return new ResponseEntity<>(personaService.getAll(), HttpStatus.OK);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Persona> getFindById(@PathVariable String id) {
+        return personaService.getProduct(id)
+                .map(persona -> new ResponseEntity<>(persona, HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    }
+
+    @PostMapping("/save")
+    public ResponseEntity<Persona> save(@RequestBody Persona persona){
+        return new ResponseEntity<>(personaService.save(persona), HttpStatus.CREATED);
+    }
+
+    @PutMapping("/update/{id}")
+    public ResponseEntity<Persona> upDate(@RequestBody Persona persona ,@PathVariable String id){
+        return new ResponseEntity<>(personaService.upDate(persona,id), HttpStatus.OK);
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity delete(@PathVariable("id") String idPersona){
+        if (personaService.delete(idPersona)){
+            return new ResponseEntity(HttpStatus.OK);
+        }else {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
+    }
+
+
 }

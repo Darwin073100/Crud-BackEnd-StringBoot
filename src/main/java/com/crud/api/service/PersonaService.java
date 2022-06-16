@@ -55,7 +55,10 @@ public class PersonaService implements PersonaRepository {
      * @param idPersona 
      */
     @Override
-    public void delete(String idPersona) {
-        personaCrudRepository.deleteById(idPersona);
+    public boolean delete(String idPersona) {
+        return getProduct(idPersona).map(persona -> {
+            personaCrudRepository.deleteById(idPersona);
+            return true;
+        }).orElse(false);
     }
 }
