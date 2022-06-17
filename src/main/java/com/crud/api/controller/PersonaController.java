@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/person")
+@RequestMapping("/persona")
 public class PersonaController {
 
     @Autowired
@@ -22,7 +22,7 @@ public class PersonaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Persona> getFindById(@PathVariable String id) {
+    public ResponseEntity<Persona> getPersona(@PathVariable String id) {
         return personaService.getProduct(id)
                 .map(persona -> new ResponseEntity<>(persona, HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
