@@ -1,0 +1,1 @@
+web: java -jar build/libs/api-1.0.jar
