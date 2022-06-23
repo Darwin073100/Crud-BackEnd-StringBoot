@@ -16,7 +16,7 @@ public class CarreraController {
     @Autowired
     private CarreraService carreraService;
 
-    @GetMapping("all")
+    @GetMapping("/all")
     public ResponseEntity<List<Carrera>> getAll(){
         return new ResponseEntity<>(carreraService.getAll(), HttpStatus.OK);
     }
@@ -38,12 +38,11 @@ public class CarreraController {
         return new ResponseEntity<>(carreraService.upDate(idCarrera,carrera), HttpStatus.OK);
     }
 
-    @DeleteMapping("delete/{idCarrera}")
-    public ResponseEntity delete(@PathVariable int idCarrera){
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity delete(@PathVariable("id") int idCarrera){
         if (carreraService.delete(idCarrera)){
             return new ResponseEntity(HttpStatus.OK);
-        }
-        else {
+        }else {
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
     }
