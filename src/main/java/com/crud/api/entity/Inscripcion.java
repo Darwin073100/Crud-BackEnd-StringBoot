@@ -17,6 +17,30 @@ public class Inscripcion {
     @Column(name = "id_carrera")
     private Integer idCarrera;
 
+    @OneToOne
+    @JoinColumn(name = "id_persona", insertable = false, updatable = false)
+    private Persona persona;
+
+    @OneToOne
+    @JoinColumn(name = "id_carrera", insertable = false, updatable = false)
+    private Carrera carrera;
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
+    }
+
+    public Carrera getCarrera() {
+        return carrera;
+    }
+
+    public void setCarrera(Carrera carrera) {
+        this.carrera = carrera;
+    }
+
     private LocalDateTime fecha;
 
     public Integer getId() {

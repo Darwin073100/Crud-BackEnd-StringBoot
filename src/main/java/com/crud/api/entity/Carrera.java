@@ -12,6 +12,9 @@ public class Carrera {
     private String nombre;
     private Integer creditos;
 
+    @OneToOne(mappedBy = "carrera")
+    private Inscripcion inscripcion;
+
     public Integer getId() {
         return id;
     }

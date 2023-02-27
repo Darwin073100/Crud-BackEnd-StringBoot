@@ -12,6 +12,9 @@ public class Persona {
     private String nombre;
     private String apellidos;
 
+    @OneToOne(mappedBy = "persona")
+    private Inscripcion inscripcion;
+
     public String getId() {
         return id;
     }
