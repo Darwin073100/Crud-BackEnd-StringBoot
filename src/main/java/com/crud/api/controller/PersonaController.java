@@ -16,7 +16,7 @@ public class PersonaController {
     @Autowired
     private PersonaService personaService;
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Persona>> getAll() {
         return new ResponseEntity<>(personaService.getAll(), HttpStatus.OK);
     }
@@ -28,16 +28,18 @@ public class PersonaController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/save")
+    @PostMapping
     public ResponseEntity<Persona> save(@RequestBody Persona persona){
         return new ResponseEntity<>(personaService.save(persona), HttpStatus.CREATED);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Persona> upDate(@RequestBody Persona persona ,@PathVariable String id){
-        return new ResponseEntity<>(personaService.upDate(persona,id), HttpStatus.OK);
+        return personaService.getProduct(id).map(item ->{
+            return new ResponseEntity<>(personaService.upDate(persona,id), HttpStatus.OK);
+        }).orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable("id") String idPersona){
         if (personaService.delete(idPersona)){
             return new ResponseEntity(HttpStatus.OK);

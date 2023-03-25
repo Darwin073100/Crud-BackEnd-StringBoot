@@ -16,6 +16,7 @@ public class Inscripcion {
 
     @Column(name = "id_carrera")
     private Integer idCarrera;
+    private LocalDateTime fecha;
 
     @OneToOne
     @JoinColumn(name = "id_persona", insertable = false, updatable = false)
@@ -40,8 +41,6 @@ public class Inscripcion {
     public void setCarrera(Carrera carrera) {
         this.carrera = carrera;
     }
-
-    private LocalDateTime fecha;
 
     public Integer getId() {
         return id;

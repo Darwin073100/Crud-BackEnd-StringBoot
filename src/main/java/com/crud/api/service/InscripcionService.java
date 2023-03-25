@@ -6,6 +6,7 @@ import com.crud.api.repository.InscripcionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,15 +28,17 @@ public class InscripcionService implements InscripcionRepository {
      */
     @Override
     public Optional<Inscripcion> getInscripcion(int id) {
-        return inscripcionCrudRepository.findById(id);
+        return (Optional<Inscripcion>) inscripcionCrudRepository.findById(id);
     }
 
     /**
      * @param inscripcion 
-     * @return
+     * @return LocalDateTime
      */
     @Override
     public Inscripcion save(Inscripcion inscripcion) {
+        LocalDateTime defaultDate = LocalDateTime.now();
+        inscripcion.setFecha(defaultDate);
         return inscripcionCrudRepository.save(inscripcion);
     }
 

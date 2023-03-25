@@ -10,7 +10,10 @@ public class Carrera {
     @Column(name = "id_carrera")
     private Integer id;
     private String nombre;
+    private String alias;
     private Integer creditos;
+    private String servicio;
+    private String residencia;
 
     @OneToOne(mappedBy = "carrera")
     private Inscripcion inscripcion;
@@ -31,11 +34,35 @@ public class Carrera {
         this.nombre = nombre;
     }
 
+    public String getAlias() {
+        return alias;
+    }
+
+    public void setAlias(String alias) {
+        this.alias = alias;
+    }
+
     public Integer getCreditos() {
         return creditos;
     }
 
     public void setCreditos(Integer creditos) {
         this.creditos = creditos;
+    }
+
+    public String getServicio() {
+        return servicio;
+    }
+
+    public void setServicio(String servicio) {
+        this.servicio = servicio;
+    }
+
+    public String getResidencia() {
+        return residencia;
+    }
+
+    public void setResidencia(String residencia) {
+        this.residencia = residencia;
     }
 }

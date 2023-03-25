@@ -16,7 +16,7 @@ public class InscripcionController {
     @Autowired
     private InscripcionService inscripcionService;
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Inscripcion>> getAll(){
         return new ResponseEntity<>(inscripcionService.getAll(), HttpStatus.OK);
     }
@@ -28,17 +28,17 @@ public class InscripcionController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/save")
+    @PostMapping
     public ResponseEntity<Inscripcion> save(@RequestBody Inscripcion inscripcion){
         return  new ResponseEntity<>(inscripcionService.save(inscripcion),HttpStatus.CREATED);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Inscripcion> upDate(@PathVariable int id, @RequestBody Inscripcion inscripcion){
         return  new ResponseEntity<>(inscripcionService.upDate(id, inscripcion),HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable int id){
         if (inscripcionService.delete(id)){
             return new ResponseEntity(HttpStatus.OK);

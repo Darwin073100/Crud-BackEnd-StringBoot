@@ -11,6 +11,10 @@ public class Persona {
     private String id;
     private String nombre;
     private String apellidos;
+    @Column(name = "name", unique = true)
+    private String email;
+    private String address;
+    private Integer edad;
 
     @OneToOne(mappedBy = "persona")
     private Inscripcion inscripcion;
@@ -37,5 +41,29 @@ public class Persona {
 
     public void setApellidos(String apellidos) {
         this.apellidos = apellidos;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Integer getEdad() {
+        return edad;
+    }
+
+    public void setEdad(Integer edad) {
+        this.edad = edad;
     }
 }

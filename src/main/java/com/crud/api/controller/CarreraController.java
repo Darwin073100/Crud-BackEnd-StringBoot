@@ -16,7 +16,7 @@ public class CarreraController {
     @Autowired
     private CarreraService carreraService;
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<Carrera>> getAll(){
         return new ResponseEntity<>(carreraService.getAll(), HttpStatus.OK);
     }
@@ -28,17 +28,17 @@ public class CarreraController {
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/save")
+    @PostMapping
     public ResponseEntity<Carrera> save(@RequestBody Carrera carrera){
         return new ResponseEntity<>(carreraService.save(carrera),HttpStatus.CREATED);
     }
 
-    @PutMapping("/update/{idCarrera}")
+    @PutMapping("/{idCarrera}")
     public ResponseEntity<Carrera> upDate(@PathVariable int idCarrera, @RequestBody Carrera carrera){
         return new ResponseEntity<>(carreraService.upDate(idCarrera,carrera), HttpStatus.OK);
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable("id") int idCarrera){
         if (carreraService.delete(idCarrera)){
             return new ResponseEntity(HttpStatus.OK);
